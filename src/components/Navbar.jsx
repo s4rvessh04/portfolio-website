@@ -4,8 +4,8 @@ import * as hi from 'react-icons/hi';
 import * as di from 'react-icons/di';
 
 function Navbar() {
-  const activeItem = 'border-b-2 border-indigo-500';
   const [isOpen, setIsOpen] = useState(window.innerWidth > 1024 ? true : false);
+  const activeItem = 'border-b-2 border-indigo-500';
 
   useEffect(() => {
     const hideMenu = () => {
@@ -58,32 +58,34 @@ function Navbar() {
             <Link
               to="/"
               activeClassName={activeItem}
-              className={`lg:mr-10 md:mb-0 mb-2 border-b-2 border-transparent`}
+              className="lg:mr-10 md:mb-0 mb-2 border-b-2 border-transparent"
             >
               Home
             </Link>
             <Link
               to="/social"
               activeClassName={activeItem}
-              className={`lg:mr-10 md:mb-0 mb-2 border-b-2 border-transparent`}
+              className="lg:mr-10 md:mb-0 mb-2 border-b-2 border-transparent"
             >
               Social
             </Link>
             <Link
               to="/projects"
               activeClassName={activeItem}
-              className={`lg:mr-10 md:mb-0 mb-2 border-b-2 border-transparent`}
+              className="lg:mr-10 md:mb-0 mb-2 border-b-2 border-transparent"
             >
               Projects
             </Link>
             <Link
               to="/about"
               activeClassName={activeItem}
-              className={`lg:mr-10 md:mb-0 mb-2 border-b-2 border-transparent`}
+              className="lg:mr-10 md:mb-0 mb-2 border-b-2 border-transparent"
             >
               About
             </Link>
-            <di.DiGithubBadge className="h-8 w-8 md:mb-0.5 mb-2 text-gray-400" />
+            <Link to="https://www.github.com/targusrock" target="_blank">
+              <di.DiGithubBadge className="h-8 w-8 md:mb-0.5 mb-2 text-gray-400" />
+            </Link>
           </div>
         </div>
       </nav>
