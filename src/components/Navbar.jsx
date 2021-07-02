@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'gatsby';
 import * as hi from 'react-icons/hi';
 import * as di from 'react-icons/di';
 
@@ -54,11 +55,35 @@ function Navbar() {
           role="presentation"
         >
           <div className="flex lg:justify-center justify-evenly items-center font-light text-lg">
-            <div className={`lg:mr-10 md:mb-0 mb-2 ${activeItem}`}>Home</div>
-            <div className={`lg:mr-10 md:mb-0.5 mb-2`}>Social</div>
-            <div className={`lg:mr-10 md:mb-0.5 mb-2`}>Projects</div>
-            <div className={`lg:mr-10 md:mb-0.5 mb-2`}>About</div>
-            <di.DiGithubBadge className="h-8 w-8 md:mb-0.5 mb-2 border-none text-gray-400" />
+            <Link
+              to="/"
+              activeClassName={activeItem}
+              className={`lg:mr-10 md:mb-0 mb-2 border-b-2 border-transparent`}
+            >
+              Home
+            </Link>
+            <Link
+              to="/social"
+              activeClassName={activeItem}
+              className={`lg:mr-10 md:mb-0 mb-2 border-b-2 border-transparent`}
+            >
+              Social
+            </Link>
+            <Link
+              to="/projects"
+              activeClassName={activeItem}
+              className={`lg:mr-10 md:mb-0 mb-2 border-b-2 border-transparent`}
+            >
+              Projects
+            </Link>
+            <Link
+              to="/about"
+              activeClassName={activeItem}
+              className={`lg:mr-10 md:mb-0 mb-2 border-b-2 border-transparent`}
+            >
+              About
+            </Link>
+            <di.DiGithubBadge className="h-8 w-8 md:mb-0.5 mb-2 text-gray-400" />
           </div>
         </div>
       </nav>
