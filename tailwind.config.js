@@ -9,11 +9,21 @@ module.exports = {
       fontWeight: {
         black: 900,
       },
+      height: {
+        HeightHeroBox: '32.375rem',
+      },
+      width: {
+        WidthHeroBox: '27rem',
+      },
       boxShadow: {
         hoverShadow: '0px 7px 29px rgba(100, 100, 111, 0.2)',
+        soft: '0px 8px 24px rgba(149, 157, 165, 0.1)',
       },
       dropShadow: {
         soft: 'drop-shadow(1px 3px 4px rgba(238, 238, 238, 0.8))',
+      },
+      lineHeight: {
+        '45px': '2.813rem',
       },
     },
   },
