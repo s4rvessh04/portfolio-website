@@ -13,7 +13,7 @@ function Home() {
           <h1 className="text-5xl font-black italic mb-20">
             Adding, Commiting and Pushing Code since 2019.
           </h1>
-          <button className="mb-1 text-lg font-semibold border border-indigo-400 bg-indigo-50 text-indigo-500 px-3 py-2">
+          <button className="mb-1 text-lg font-semibold border border-indigo-400 bg-indigo-50 text-indigo-500 px-3 py-2 focus:ring-2 ring-offset-2 ring-indigo-400 transition-all duration-100">
             Let's Connect
           </button>
         </div>
