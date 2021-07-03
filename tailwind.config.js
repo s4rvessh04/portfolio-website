@@ -9,6 +9,11 @@ module.exports = {
       fontWeight: {
         black: 900,
       },
+      colors: {
+        'lightBlue-50': '#F0F9FF',
+        'lightBlue-100': '#E0F2FE',
+        'lightBlue-300': '#7DD3FC',
+      },
       height: {
         HeightHeroBox: '32.375rem',
       },
@@ -20,7 +25,7 @@ module.exports = {
         soft: '0px 8px 24px rgba(149, 157, 165, 0.1)',
       },
       dropShadow: {
-        soft: 'drop-shadow(1px 3px 4px rgba(238, 238, 238, 0.8))',
+        soft: '1px 3px 4px rgba(238, 238, 238, 0.8)',
       },
       lineHeight: {
         '45px': '2.813rem',
