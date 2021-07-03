@@ -9,3 +9,23 @@
   margin: 0;
   padding: 0;
 }
+
+.dropDown-pink {
+  filter: drop-shadow(0px 20px 25px rgba(249, 168, 212, 0.1))
+    drop-shadow(0px 10px 10px rgba(249, 168, 212, 0.04));
+}
+
+.dropDown-blue {
+  filter: drop-shadow(0px 20px 25px rgba(147, 197, 253, 0.1))
+    drop-shadow(0px 10px 10px rgba(147, 197, 253, 0.04));
+}
+
+.dropDown-lightBlue {
+  filter: drop-shadow(0px 20px 25px rgba(125, 211, 252, 0.1))
+    drop-shadow(0px 10px 10px rgba(125, 211, 252, 0.04));
+}
+
+.dropDown-red {
+  filter: drop-shadow(0px 20px 25px rgba(252, 165, 165, 0.1))
+    drop-shadow(0px 10px 10px rgba(252, 165, 165, 0.04));
+}
