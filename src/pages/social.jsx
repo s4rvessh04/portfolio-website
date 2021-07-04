@@ -6,7 +6,7 @@ function social() {
   return (
     <Layout>
       <div className="lg:flex justify-between lg:px-16 px-4">
-        <div className="grid grid-cols-2 gap-8 h-HeightHeroBox my-12 w-full">
+        <div className="grid md:grid-cols-2 md:gap-8 gap-4 h-HeightHeroBox my-12 w-full">
           <div className="flex-shrink-0 z-50 overflow-hidden flex justify-between bg-pink-50">
             <si.SiInstagram className="z-0 relative -left-8 -bottom-8 h-48 w-48 flex self-end text-pink-100 dropDown-pink" />
             <h5 className="self-center flex-1 ml-14 font-semibold text-lg text-pink-300">

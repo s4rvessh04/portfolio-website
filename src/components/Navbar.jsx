@@ -32,18 +32,18 @@ function Navbar() {
         <div className="flex justify-between w-full">
           <hi.HiOutlineSun className="h-8 w-8 ml-0 mb-1" />
           <button onClick={toggle} className="lg:hidden rounded-lg focus:outline-none">
-            <svg fill="currentColor" viewBox="0 0 20 20" className="w-6 h-6">
+            <svg fill="currentColor" viewBox="0 0 20 20" className="w-6 h-6 mb-1">
               <path
                 fill-rule="evenodd"
                 d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
                 clip-rule="evenodd"
-                className={isOpen ? 'hidden' : 'w-6 h-6'}
+                className={isOpen ? 'hidden' : 'w-8 h-8'}
               ></path>
               <path
                 fill-rule="evenodd"
                 d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                 clip-rule="evenodd"
-                className={isOpen ? 'w-6 h-6' : 'hidden'}
+                className={isOpen ? 'w-8 h-8 mb-1' : 'hidden'}
               ></path>
             </svg>
           </button>
@@ -83,9 +83,9 @@ function Navbar() {
             >
               About
             </Link>
-            <Link to="https://www.github.com/targusrock" target="_blank">
+            <a href="https://www.github.com/targusrock" target="_blank" rel="noreferrer">
               <di.DiGithubBadge className="h-8 w-8 md:mb-0.5 mb-2 text-gray-400" />
-            </Link>
+            </a>
           </div>
         </div>
       </nav>
