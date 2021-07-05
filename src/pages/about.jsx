@@ -16,7 +16,7 @@ function about() {
             voluptatem sequi nesciunt. Et harum quidem rerum facilis est et expedita distinctio.
           </p>
         </div>
-        <div className="flex flex-col justify-between m-auto my-12 lg:ml-16 p-8 h-HeightHeroBox lg:w-WidthHeroBox w-auto border border-gray-200 flex-shrink-0 shadow-soft">
+        <div className="flex flex-col justify-between m-auto my-12 lg:ml-16 md:p-8 px-4 py-6 h-HeightHeroBox lg:w-WidthHeroBox w-auto border border-gray-200 flex-shrink-0 shadow-soft">
           <div>
             <h3 className="text-2xl text-center font-extralight mb-8">Skill Belt</h3>
             <div className="relative mb-4">
