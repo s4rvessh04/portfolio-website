@@ -30,6 +30,8 @@ module.exports = {
       lineHeight: {
         '45px': '2.813rem',
       },
+      dropShadow: ['hover', 'focus'],
+      filter: ['hover', 'focus'],
     },
   },
   variants: {
