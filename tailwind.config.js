@@ -13,6 +13,7 @@ module.exports = {
         'lightBlue-50': '#F0F9FF',
         'lightBlue-100': '#E0F2FE',
         'lightBlue-300': '#7DD3FC',
+        'lightBlue-500': '#0EA5E9',
       },
       height: {
         HeightHeroBox: '32.375rem',
