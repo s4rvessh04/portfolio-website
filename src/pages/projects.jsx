@@ -5,10 +5,10 @@ import Layout from '../components/Layout';
 
 function Projects() {
   const [data, setData] = useState([]);
-  const [activeRepo, setActiveRepo] = useState('');
+  const [activeRepo, setActiveRepo] = useState({});
   const [activeData, setActiveData] = useState({});
-  const [activeContributionsData, setActiveContributionsData] = useState('');
-  const [activeRepoLanguages, setActiveRepoLanguages] = useState(0);
+  const [activeContributionsData, setActiveContributionsData] = useState({});
+  const [activeRepoLanguages, setActiveRepoLanguages] = useState({});
 
   const apiLink = 'https://api.github.com/users/targusrock';
 
@@ -16,7 +16,7 @@ function Projects() {
 
   const headers = {
     Authorization: `Bearer ${token}`,
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/vnd.github.v3+json',
   };
 
   useEffect(() => {
@@ -24,9 +24,14 @@ function Projects() {
   }, [apiLink]);
 
   async function fetchLink(link) {
-    const response = await fetch(link, { headers });
-    const data = await response.json();
-    return data;
+    try {
+      const response = await fetch(link, { headers });
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return 'No data';
+    }
   }
 
   async function fetchData() {
@@ -61,13 +66,20 @@ function Projects() {
   }
 
   async function languageBar(data) {
-    const total = Object.values(data).reduce((a, b) => a + b);
+    const fulfilledData = await data;
+
+    if (Object.keys(fulfilledData).length === 0) {
+      return false;
+    }
+
+    const total = Object.values(fulfilledData).reduce((a, b) => a + b, 0);
 
     let percentLanguage = {};
 
-    for (let item in await data) {
-      percentLanguage[item] = ((data[item] * 100) / total).toFixed(1);
+    for (let item in fulfilledData) {
+      percentLanguage[item] = ((fulfilledData[item] * 100) / total).toFixed(1);
     }
+
     setActiveRepoLanguages(percentLanguage);
 
     return true;
@@ -100,10 +112,24 @@ function Projects() {
       if (item.name === repoName) {
         setActiveData(item);
         totalContributorsContributions(fetchLink(item.contributors_url));
+        languageBar(fetchLink(item.languages_url));
       }
     });
   };
 
+  const handleLanguageColors = (name) => {
+    switch (name) {
+      case 'Python':
+        return 'purple';
+      case 'HTML':
+        return 'red';
+      case 'CSS':
+        return 'lightBlue';
+      default:
+        return 'gray';
+    }
+  };
+  console.log(activeRepoLanguages === 'No data');
   return (
     <>
       {data && (
@@ -176,8 +202,33 @@ function Projects() {
                     <span className="px-4 font-medium text-sm bg-white">Languages</span>
                   </div>
                 </div>
-                <div className="w-full p-1 bg-red-200"></div>
-                <p className="text-xs font-light mt-2">{''}</p>
+                <div className="w-full flex">
+                  {activeRepoLanguages === true ? (
+                    Object.keys(activeRepoLanguages).map((item) => {
+                      return (
+                        <div
+                          style={{ width: `${activeRepoLanguages[item]}%` }}
+                          className={`bg-${handleLanguageColors(item)}-500 p-1`}
+                        ></div>
+                      );
+                    })
+                  ) : (
+                    <div className="w-full bg-gray-500 p-1"></div>
+                  )}
+                </div>
+                <p className="text-xs font-light mt-2">
+                  {activeRepoLanguages === true ? (
+                    Object.keys(activeRepoLanguages).map((item) => {
+                      return (
+                        <span>
+                          {item}: {activeRepoLanguages[item]}
+                        </span>
+                      );
+                    })
+                  ) : (
+                    <span>{'No languages found'}</span>
+                  )}
+                </p>
               </div>
               <div className="grid grid-cols-2 md:gap-5 gap-2">
                 <button className="bg-indigo-500 text-white w-full md:p-2 py-2 px- font-semibold text-sm focus:ring-2 ring-offset-2 ring-indigo-400 transition-all duration-100">
