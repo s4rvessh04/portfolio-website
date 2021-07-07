@@ -9,19 +9,14 @@ function Projects() {
   const [activeData, setActiveData] = useState({});
   const [activeContributionsData, setActiveContributionsData] = useState({});
   const [activeRepoLanguages, setActiveRepoLanguages] = useState({});
+  const [deplomentUrl, setDeplomentUrl] = useState([]);
 
   const apiLink = 'https://api.github.com/users/targusrock';
-
   const token = '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';
-
   const headers = {
     Authorization: `Bearer ${token}`,
     'Content-Type': 'application/vnd.github.v3+json',
   };
-
-  useEffect(() => {
-    fetchData();
-  }, [apiLink]);
 
   async function fetchLink(link) {
     try {
@@ -50,12 +45,15 @@ function Projects() {
   }
 
   async function totalContributorsContributions(data) {
+    const fulfilledData = await data;
     let totalContributions = 0;
     let totalContributors = 0;
 
-    Object.values(await data).forEach((item) => {
-      totalContributions += item.contributions;
-    });
+    if (fulfilledData !== 'No data') {
+      Object.values(fulfilledData).forEach((item) => {
+        totalContributions += item.contributions;
+      });
+    }
 
     setActiveContributionsData({
       totalContributors: totalContributors,
@@ -69,6 +67,7 @@ function Projects() {
     const fulfilledData = await data;
 
     if (Object.keys(fulfilledData).length === 0) {
+      setActiveRepoLanguages(null);
       return false;
     }
 
@@ -113,6 +112,9 @@ function Projects() {
         setActiveData(item);
         totalContributorsContributions(fetchLink(item.contributors_url));
         languageBar(fetchLink(item.languages_url));
+        fetchLink(item.deployments_url).then((items) => {
+          setDeplomentUrl(items);
+        });
       }
     });
   };
@@ -129,10 +131,14 @@ function Projects() {
         return 'gray';
     }
   };
-  console.log(activeRepoLanguages === 'No data');
+
+  useEffect(() => {
+    fetchData();
+  }, [apiLink]);
+
   return (
     <>
-      {data && (
+      {data && activeRepo && (
         <Layout>
           <div className="lg:flex justify-between lg:px-16 px-4">
             <div className="grid md:grid-cols-3 md:gap-8 gap-4 lg:h-HeightHeroBox my-12 w-full">
@@ -141,9 +147,9 @@ function Projects() {
                   <div
                     className={`${
                       activeRepo === item.name
-                        ? 'shadow-hoverShadow transition-all duration-150 transform -translate-y-1 translate-x-1'
-                        : 'hover:shadow-hoverShadow transition-all duration-150 arrow-wrapper'
-                    } p-3 relative overflow-hidden bg-gray-50 flex flex-col flex-shrink-0 cursor-pointer`}
+                        ? 'shadow-hoverShadow transition-transform duration-150 transform -translate-y-1 translate-x-1'
+                        : 'hover:shadow-hoverShadow arrow-wrapper'
+                    } p-3 relative overflow-hidden bg-gray-50 flex flex-col flex-shrink-0 cursor-pointer transition-all duration-150 ease-in-out`}
                     onClick={() => handleActiveRepo(item.name)}
                   >
                     <div className="pb-0 relative z-10">
@@ -203,7 +209,7 @@ function Projects() {
                   </div>
                 </div>
                 <div className="w-full flex">
-                  {activeRepoLanguages === true ? (
+                  {activeRepoLanguages !== null ? (
                     Object.keys(activeRepoLanguages).map((item) => {
                       return (
                         <div
@@ -217,11 +223,11 @@ function Projects() {
                   )}
                 </div>
                 <p className="text-xs font-light mt-2">
-                  {activeRepoLanguages === true ? (
+                  {activeRepoLanguages !== null ? (
                     Object.keys(activeRepoLanguages).map((item) => {
                       return (
-                        <span>
-                          {item}: {activeRepoLanguages[item]}
+                        <span className={`pl-1 mr-2 text-${handleLanguageColors(item)}-500`}>
+                          {item}: {`${activeRepoLanguages[item]}%`}
                         </span>
                       );
                     })
@@ -231,16 +237,23 @@ function Projects() {
                 </p>
               </div>
               <div className="grid grid-cols-2 md:gap-5 gap-2">
-                <button className="bg-indigo-500 text-white w-full md:p-2 py-2 px- font-semibold text-sm focus:ring-2 ring-offset-2 ring-indigo-400 transition-all duration-100">
-                  <div className="flex justify-center">
-                    View Project <hi.HiExternalLink className="h-4 w-4 ml-1" />
-                  </div>
-                </button>
-                <button className="bg-white text-gray-900 w-full md:p-2 py-2 px-1 font-semibold text-sm border border-gray-900 focus:ring-2 ring-offset-2 ring-gray-400 transition-all duration-100">
-                  <div className="flex justify-center">
-                    View Repository <di.DiGithubBadge className="h-5 w-5 ml-1" />
-                  </div>
-                </button>
+                <a href={deplomentUrl[0] !== undefined ? deplomentUrl[0] : null}>
+                  <button
+                    className="disabled:opacity-70 disabled:cursor-not-allowed bg-indigo-500 text-white w-full md:p-2 py-2 px- font-semibold text-sm focus:ring-2 ring-offset-2 ring-indigo-400 transition-all duration-100"
+                    disabled={deplomentUrl.length === 0}
+                  >
+                    <div className="flex justify-center">
+                      View Project <hi.HiExternalLink className="h-4 w-4 ml-1" />
+                    </div>
+                  </button>
+                </a>
+                <a href={activeData.html_url}>
+                  <button className="bg-white text-gray-900 w-full md:p-2 py-2 px-1 font-semibold text-sm border border-gray-900 focus:ring-2 ring-offset-2 ring-gray-400 transition-all duration-100">
+                    <div className="flex justify-center">
+                      View Repository <di.DiGithubBadge className="h-5 w-5 ml-1" />
+                    </div>
+                  </button>
+                </a>
               </div>
             </div>
           </div>
