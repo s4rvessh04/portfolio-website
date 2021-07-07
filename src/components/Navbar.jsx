@@ -54,39 +54,33 @@ function Navbar() {
           onKeyDown={!toggle}
           role="presentation"
         >
-          <div className="flex lg:justify-center justify-evenly items-center font-light text-lg">
-            <Link
-              to="/"
-              activeClassName={activeItem}
-              className="lg:mr-10 md:mb-0 mb-2 border-b-2 border-transparent"
-            >
-              Home
-            </Link>
-            <Link
-              to="/social"
-              activeClassName={activeItem}
-              className="lg:mr-10 md:mb-0 mb-2 border-b-2 border-transparent"
-            >
-              Social
-            </Link>
-            <Link
-              to="/projects"
-              activeClassName={activeItem}
-              className="lg:mr-10 md:mb-0 mb-2 border-b-2 border-transparent"
-            >
-              Projects
-            </Link>
-            <Link
-              to="/about"
-              activeClassName={activeItem}
-              className="lg:mr-10 md:mb-0 mb-2 border-b-2 border-transparent"
-            >
-              About
-            </Link>
-            <a href="https://www.github.com/targusrock" target="_blank" rel="noreferrer">
-              <di.DiGithubBadge className="h-8 w-8 md:mb-0.5 mb-2 text-gray-400" />
-            </a>
-          </div>
+          <ul className="flex lg:justify-center justify-evenly items-center font-light text-lg">
+            <li className="lg:mr-10 border-b-2 border-transparent">
+              <Link to="/" activeClassName={activeItem} className="pb-1">
+                Home
+              </Link>
+            </li>
+            <li className="lg:mr-10 border-b-2 border-transparent">
+              <Link to="/social" activeClassName={activeItem} className="pb-1">
+                Social
+              </Link>
+            </li>
+            <li className="lg:mr-10 border-b-2 border-transparent">
+              <Link to="/projects" activeClassName={activeItem} className="pb-1">
+                Projects
+              </Link>
+            </li>
+            <li className="lg:mr-10 border-b-2 border-transparent">
+              <Link to="/about" activeClassName={activeItem} className="pb-1">
+                About
+              </Link>
+            </li>
+            <li>
+              <a href="https://www.github.com/targusrock" target="_blank" rel="noreferrer">
+                <di.DiGithubBadge className="h-8 w-8 md:mb-1 mb-2 text-gray-400" />
+              </a>
+            </li>
+          </ul>
         </div>
       </nav>
     </>

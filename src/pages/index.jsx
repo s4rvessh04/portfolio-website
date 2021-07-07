@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import Layout from '../components/Layout';
 
 function Home() {
@@ -13,9 +14,11 @@ function Home() {
           <h1 className="text-5xl font-black italic mb-20">
             Adding, Commiting and Pushing Code since 2019.
           </h1>
-          <button className="mb-1 text-lg font-semibold border border-indigo-400 bg-indigo-50 text-indigo-500 px-3 py-2 focus:ring-2 ring-offset-2 ring-indigo-400 transition-all duration-100">
-            Let's Connect
-          </button>
+          <Link to="/social">
+            <button className="mb-1 text-lg font-semibold border border-indigo-400 bg-indigo-50 text-indigo-500 px-3 py-2 focus:ring-2 ring-offset-2 ring-indigo-400 transition-all duration-100">
+              Let's Connect
+            </button>
+          </Link>
         </div>
         <div className="m-auto my-12 lg:ml-36 h-1/3 max-w-max flex-shrink-0 shadow-hoverShadow">
           <img src="/HeroResized.png" alt="Hero" className="m-auto object-contain" />
