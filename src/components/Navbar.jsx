@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
-import * as hi from 'react-icons/hi';
+import { ThemeToggler } from 'gatsby-plugin-dark-mode';
 import * as di from 'react-icons/di';
+import * as hi from 'react-icons/hi';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(window.innerWidth > 1024 ? true : false);
@@ -30,7 +31,21 @@ function Navbar() {
     <>
       <nav className="lg:h-24 lg:px-16 px-4 py-3 lg:flex lg:justify-between items-center flex-shrink-0">
         <div className="flex justify-between w-full">
-          <hi.HiOutlineSun className="h-8 w-8 ml-0 mb-1" />
+          <ThemeToggler>
+            {({ theme, toggleTheme }) =>
+              theme === 'light' ? (
+                <hi.HiOutlineSun
+                  className="w-8 h-8 mb-1 text-current"
+                  onClick={() => toggleTheme('dark')}
+                />
+              ) : (
+                <hi.HiOutlineMoon
+                  className="w-8 h-8 mb-1 text-current"
+                  onClick={() => toggleTheme('light')}
+                />
+              )
+            }
+          </ThemeToggler>
           <button onClick={toggle} className="lg:hidden rounded-lg focus:outline-none">
             <svg fill="currentColor" viewBox="0 0 20 20" className="w-6 h-6 mb-1">
               <path
@@ -77,7 +92,7 @@ function Navbar() {
             </li>
             <li>
               <a href="https://www.github.com/targusrock" target="_blank" rel="noreferrer">
-                <di.DiGithubBadge className="h-8 w-8 md:mb-1 mb-2 text-gray-400" />
+                <di.DiGithubBadge className="h-8 w-8 md:mb-1 mb-2 text-gray-400 dark:text-gray-50" />
               </a>
             </li>
           </ul>

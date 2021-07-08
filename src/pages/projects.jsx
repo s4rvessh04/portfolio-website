@@ -88,19 +88,19 @@ function Projects() {
     switch (name) {
       case 'Python':
         return (
-          <di.DiPython className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dropDown-gray" />
+          <di.DiPython className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-20 dropDown-gray" />
         );
       case 'HTML':
         return (
-          <di.DiHtml5 className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dropDown-gray" />
+          <di.DiHtml5 className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-20 dropDown-gray" />
         );
       case 'Javascript':
         return (
-          <di.DiJavascript1 className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dropDown-gray" />
+          <di.DiJavascript1 className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-20 dropDown-gray" />
         );
       default:
         return (
-          <di.DiGithubBadge className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dropDown-gray" />
+          <di.DiGithubBadge className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-20 dropDown-gray" />
         );
     }
   };
@@ -148,13 +148,13 @@ function Projects() {
                     className={`${
                       activeRepo === item.name
                         ? 'shadow-hoverShadow transition-transform duration-150 transform -translate-y-1 translate-x-1'
-                        : 'hover:shadow-hoverShadow arrow-wrapper'
-                    } p-3 relative overflow-hidden bg-gray-50 flex flex-col flex-shrink-0 cursor-pointer transition-all duration-150 ease-in-out`}
+                        : 'hover-dropDown-gray dark:hover:shadow-none arrow-wrapper'
+                    } p-3 relative overflow-hidden bg-gray-50 hover-dropDown-gray dark:bg-opacity-5 flex flex-col flex-shrink-0 cursor-pointer transition-all duration-150 ease-in-out`}
                     onClick={() => handleActiveRepo(item.name)}
                   >
                     <div className="pb-0 relative z-10">
                       <h5 className="text-lg mb-2">{item.name}</h5>
-                      <p className="text-sm font-light leading-5 text-gray-700">
+                      <p className="text-sm font-light leading-5 text-gray-700 dark:text-gray-50">
                         {item.description}
                       </p>
                     </div>
@@ -166,15 +166,15 @@ function Projects() {
                 );
               })}
             </div>
-            <div className="flex flex-col justify-between m-auto my-12 lg:ml-16 md:p-8 px-4 py-6 h-HeightHeroBox lg:w-WidthHeroBox w-auto border border-gray-200 flex-shrink-0 shadow-soft">
+            <div className="flex flex-col justify-between m-auto my-12 lg:ml-16 md:p-8 px-4 py-6 h-HeightHeroBox lg:w-WidthHeroBox w-auto border border-gray-200 dark:border-opacity-20 flex-shrink-0 shadow-soft">
               <div className="wrapper">
                 <h3 className="text-2xl text-center font-extralight mb-8">Details</h3>
                 <div className="relative mb-4">
                   <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-200"></div>
+                    <div className="w-full border-t border-gray-200 dark:border-opacity-20"></div>
                   </div>
                   <div className="relative flex justify-center text-sm leading-5">
-                    <span className="px-4 font-medium text-sm bg-white">
+                    <span className="px-4 font-medium text-sm bg-white dark:bg-gray-900">
                       Total Contributors and Contributions
                     </span>
                   </div>
@@ -189,10 +189,12 @@ function Projects() {
               <div className="wrapper">
                 <div className="relative mb-4">
                   <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-200"></div>
+                    <div className="w-full border-t border-gray-200 dark:border-opacity-20"></div>
                   </div>
                   <div className="relative flex justify-center text-sm leading-5">
-                    <span className="px-4 font-medium text-sm bg-white">Forking Status</span>
+                    <span className="px-4 font-medium text-sm bg-white dark:bg-gray-900">
+                      Forking Status
+                    </span>
                   </div>
                 </div>
                 <p className="text-sm font-light text-center">
@@ -202,10 +204,12 @@ function Projects() {
               <div className="wrapper">
                 <div className="relative mb-4">
                   <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-200"></div>
+                    <div className="w-full border-t border-gray-200 dark:border-opacity-20"></div>
                   </div>
                   <div className="relative flex justify-center text-sm leading-5">
-                    <span className="px-4 font-medium text-sm bg-white">Languages</span>
+                    <span className="px-4 font-medium text-sm bg-white dark:bg-gray-900">
+                      Languages
+                    </span>
                   </div>
                 </div>
                 <div className="w-full flex">
@@ -239,7 +243,7 @@ function Projects() {
               <div className="grid grid-cols-2 md:gap-5 gap-2">
                 <a href={deplomentUrl[0] !== undefined ? deplomentUrl[0] : null}>
                   <button
-                    className="disabled:opacity-70 disabled:cursor-not-allowed bg-indigo-500 text-white w-full md:p-2 py-2 px- font-semibold text-sm focus:ring-2 ring-offset-2 ring-indigo-400 transition-all duration-100"
+                    className="disabled:opacity-70 disabled:cursor-not-allowed bg-indigo-500 text-white w-full md:p-2 py-2 px-1 border border-indigo-500 font-semibold text-sm focus:ring-2 ring-offset-2 ring-offset-gray-900 ring-indigo-400 transition-all duration-100"
                     disabled={deplomentUrl.length === 0}
                   >
                     <div className="flex justify-center">
@@ -248,7 +252,7 @@ function Projects() {
                   </button>
                 </a>
                 <a href={activeData.html_url}>
-                  <button className="bg-white text-gray-900 w-full md:p-2 py-2 px-1 font-semibold text-sm border border-gray-900 focus:ring-2 ring-offset-2 ring-gray-400 transition-all duration-100">
+                  <button className="bg-white dark:bg-transparent text-gray-900 dark:text-gray-50 w-full md:p-2 py-2 px-1 font-semibold text-sm border border-gray-900 dark:border-gray-50 focus:ring-2 ring-offset-2 ring-offset-gray-900 ring-gray-400 transition-all duration-100">
                     <div className="flex justify-center">
                       View Repository <di.DiGithubBadge className="h-5 w-5 ml-1" />
                     </div>

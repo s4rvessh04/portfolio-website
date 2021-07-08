@@ -54,7 +54,7 @@ function social() {
             return (
               <a
                 href={socialHandles[item]['url']}
-                className={`flex-shrink-0 z-50 overflow-hidden flex justify-between bg-${socialHandles[item]['color']}-50 transition-all duration-150 hover-dropDown-${socialHandles[item]['color']} cursor-pointer`}
+                className={`flex-shrink-0 z-50 overflow-hidden flex justify-between bg-${socialHandles[item]['color']}-50 transition-all duration-150 hover-dropDown-${socialHandles[item]['color']} cursor-pointer dark:bg-${socialHandles[item]['color']}-300 dark:bg-opacity-5`}
               >
                 {handleIcons(item)}
                 <h5
@@ -66,26 +66,26 @@ function social() {
             );
           })}
         </div>
-        <div className="flex flex-col justify-between m-auto my-12 lg:ml-16 md:p-8 px-4 py-6 h-HeightHeroBox lg:w-WidthHeroBox w-auto border border-gray-200 flex-shrink-0 shadow-soft">
+        <div className="flex flex-col justify-between m-auto my-12 lg:ml-16 md:p-8 px-4 py-6 h-HeightHeroBox lg:w-WidthHeroBox w-auto border border-gray-200 dark:border-opacity-20 flex-shrink-0 shadow-soft">
           <div className="flex-1">
             <h3 className="text-2xl text-center font-extralight mb-8">Contact Form</h3>
             <input
               type="text"
               placeholder="Name"
-              className="border w-full py-3 px-4 text-sm mb-8 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:shadow-inner"
+              className="border w-full py-3 px-4 text-sm mb-8 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:shadow-inner dark:bg-transparent dark:border-opacity-20"
             />
             <input
               type="text"
               placeholder="Email"
-              className="border w-full py-3 px-4 text-sm mb-8 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:shadow-inner"
+              className="border w-full py-3 px-4 text-sm mb-8 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:shadow-inner dark:bg-transparent dark:border-opacity-20"
             />
             <textarea
               name="Details"
-              className="border w-full h-1/3 text-sm px-4 py-3 mb-8 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:shadow-inner"
+              className="border w-full h-1/3 text-sm px-4 py-3 mb-8 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:shadow-inner dark:bg-transparent dark:border-opacity-20"
               placeholder="Content"
             ></textarea>
           </div>
-          <button className="bg-indigo-500 text-white w-full p-3 font-semibold text-sm focus:ring-2 ring-offset-2 ring-indigo-400 transition-all duration-100">
+          <button className="bg-indigo-500 text-white w-full p-3 font-semibold text-sm focus:ring-2 ring-offset-2 ring-indigo-400 dark:ring-offset-gray-900 transition-all duration-100">
             <div className="flex justify-center">Send it !</div>
           </button>
         </div>
