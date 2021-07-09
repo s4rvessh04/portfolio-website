@@ -34,7 +34,7 @@ function about() {
               Ubuntu, MongoDB and PostgresDB
             </p>
           </div>
-          <button className="bg-indigo-500 text-white w-full p-3 font-semibold text-sm focus:ring-2 ring-offset-2 dark:ring-offset-gray-900 ring-indigo-400 transition-all duration-100">
+          <button className="rounded-none bg-indigo-500 text-white w-full p-3 font-semibold text-sm focus:ring-2 ring-offset-2 dark:ring-offset-gray-900 ring-indigo-400 transition-all duration-100">
             <div className="flex justify-center">
               <hi.HiOutlineDownload className="h-4 w-4 mr-2" />
               Download my resume !

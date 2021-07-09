@@ -243,7 +243,7 @@ function Projects() {
               <div className="grid grid-cols-2 md:gap-5 gap-2">
                 <a href={deplomentUrl[0] !== undefined ? deplomentUrl[0] : null}>
                   <button
-                    className="disabled:opacity-70 disabled:cursor-not-allowed bg-indigo-500 text-white w-full md:p-2 py-2 px-1 border border-indigo-500 font-semibold text-sm focus:ring-2 ring-offset-2 ring-offset-gray-900 ring-indigo-400 transition-all duration-100"
+                    className="rounded-none disabled:opacity-70 disabled:cursor-not-allowed bg-indigo-500 text-white w-full md:p-2 py-2 px-1 border border-indigo-500 font-semibold text-sm focus:ring-2 ring-offset-2 ring-offset-gray-900 ring-indigo-400 transition-all duration-100"
                     disabled={deplomentUrl.length === 0}
                   >
                     <div className="flex justify-center">
@@ -252,7 +252,7 @@ function Projects() {
                   </button>
                 </a>
                 <a href={activeData.html_url}>
-                  <button className="bg-white dark:bg-transparent text-gray-900 dark:text-gray-50 w-full md:p-2 py-2 px-1 font-semibold text-sm border border-gray-900 dark:border-gray-50 focus:ring-2 ring-offset-2 ring-offset-gray-900 ring-gray-400 transition-all duration-100">
+                  <button className="rounded-none bg-white dark:bg-transparent text-gray-900 dark:text-gray-50 w-full md:p-2 py-2 px-1 font-semibold text-sm border border-gray-900 dark:border-gray-50 focus:ring-2 ring-offset-2 ring-offset-gray-900 ring-gray-400 transition-all duration-100">
                     <div className="flex justify-center">
                       View Repository <di.DiGithubBadge className="h-5 w-5 ml-1" />
                     </div>

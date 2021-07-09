@@ -85,7 +85,7 @@ function social() {
               placeholder="Content"
             ></textarea>
           </div>
-          <button className="bg-indigo-500 text-white w-full p-3 font-semibold text-sm focus:ring-2 ring-offset-2 ring-indigo-400 dark:ring-offset-gray-900 transition-all duration-100">
+          <button className="rounded-none bg-indigo-500 text-white w-full p-3 font-semibold text-sm focus:ring-2 ring-offset-2 ring-indigo-400 dark:ring-offset-gray-900 transition-all duration-100">
             <div className="flex justify-center">Send it !</div>
           </button>
         </div>

@@ -15,7 +15,7 @@ function Home() {
             Adding, Commiting and Pushing Code since 2019.
           </h1>
           <Link to="/social">
-            <button className="mb-1 text-lg font-semibold border border-indigo-400 bg-indigo-50 text-indigo-500 px-3 py-2 focus:ring-2 ring-offset-2 ring-indigo-400 dark:ring-offset-gray-900 transition-all duration-100 dark:bg-transparent">
+            <button className="rounded-none mb-1 text-lg font-semibold border border-indigo-400 bg-indigo-50 text-indigo-500 px-3 py-2 focus:ring-2 ring-offset-2 ring-indigo-400 dark:ring-offset-gray-900 transition-all duration-100 dark:bg-transparent">
               Let's Connect
             </button>
           </Link>
