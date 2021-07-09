@@ -35,12 +35,12 @@ function Navbar() {
             {({ theme, toggleTheme }) =>
               theme === 'light' ? (
                 <hi.HiOutlineSun
-                  className="w-8 h-8 mb-1 text-current"
+                  className="w-8 h-8 mb-1 text-current cursor-pointer"
                   onClick={() => toggleTheme('dark')}
                 />
               ) : (
                 <hi.HiOutlineMoon
-                  className="w-8 h-8 mb-1 text-current"
+                  className="w-8 h-8 mb-1 text-current cursor-pointer"
                   onClick={() => toggleTheme('light')}
                 />
               )
