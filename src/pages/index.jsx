@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 
 function Home() {
   return (
-    <Layout>
+    <Layout pagename="" prefix={true}>
       <div className="lg:flex justify-between lg:px-16 px-4" data-testid="main">
         <div className="lg:mt-16 mt-8" data-testid="hero-text">
           <section className="text-4xl italic mb-12">

@@ -12,7 +12,8 @@ function Projects() {
   const [deplomentUrl, setDeplomentUrl] = useState([]);
 
   const apiLink = 'https://api.github.com/users/targusrock';
-  const token = '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';
+  const token = `${process.env.GATSBY_TOKEN}`;
+
   const headers = {
     Authorization: `Bearer ${token}`,
     'Content-Type': 'application/vnd.github.v3+json',
@@ -139,7 +140,7 @@ function Projects() {
   return (
     <>
       {data && activeRepo && (
-        <Layout>
+        <Layout pagename="/projects" prefix={false}>
           <div className="lg:flex justify-between lg:px-16 px-4">
             <div
               className="grid md:grid-cols-3 md:gap-8 gap-4 lg:h-HeightHeroBox my-12 w-full"
