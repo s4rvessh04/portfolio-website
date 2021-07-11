@@ -141,7 +141,10 @@ function Projects() {
       {data && activeRepo && (
         <Layout>
           <div className="lg:flex justify-between lg:px-16 px-4">
-            <div className="grid md:grid-cols-3 md:gap-8 gap-4 lg:h-HeightHeroBox my-12 w-full">
+            <div
+              className="grid md:grid-cols-3 md:gap-8 gap-4 lg:h-HeightHeroBox my-12 w-full"
+              data-testid="projects-grid"
+            >
               {Object.values(data).map((item) => {
                 return (
                   <div
@@ -166,7 +169,10 @@ function Projects() {
                 );
               })}
             </div>
-            <div className="flex flex-col justify-between m-auto my-12 lg:ml-16 md:p-8 px-4 py-6 h-HeightHeroBox lg:w-WidthHeroBox w-auto border border-gray-200 dark:border-opacity-20 flex-shrink-0 shadow-soft">
+            <div
+              className="flex flex-col justify-between m-auto my-12 lg:ml-16 md:p-8 px-4 py-6 h-HeightHeroBox lg:w-WidthHeroBox w-auto border border-gray-200 dark:border-opacity-20 flex-shrink-0 shadow-soft"
+              data-testid="project-details-card"
+            >
               <div className="wrapper">
                 <h3 className="text-2xl text-center font-extralight mb-8">Details</h3>
                 <div className="relative mb-4">
@@ -212,7 +218,7 @@ function Projects() {
                     </span>
                   </div>
                 </div>
-                <div className="w-full flex">
+                <div className="w-full flex" data-testid="language-bar">
                   {activeRepoLanguages !== null ? (
                     Object.keys(activeRepoLanguages).map((item) => {
                       return (
@@ -240,7 +246,7 @@ function Projects() {
                   )}
                 </p>
               </div>
-              <div className="grid grid-cols-2 md:gap-5 gap-2">
+              <div className="grid grid-cols-2 md:gap-5 gap-2" data-testid="button-grid">
                 <a href={deplomentUrl[0] !== undefined ? deplomentUrl[0] : null}>
                   <button
                     className="rounded-none disabled:opacity-70 disabled:cursor-not-allowed bg-indigo-500 text-white w-full md:p-2 py-2 px-1 border border-indigo-500 font-semibold text-sm focus:ring-2 ring-offset-2 ring-offset-gray-900 ring-indigo-400 transition-all duration-100"

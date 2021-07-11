@@ -2,7 +2,7 @@ import React from 'react';
 import * as si from 'react-icons/si';
 import Layout from '../components/Layout';
 
-function social() {
+function Social() {
   const socialHandles = {
     Instagram: {
       url: '',
@@ -48,13 +48,17 @@ function social() {
   return (
     <Layout>
       <div className="lg:flex justify-between lg:px-16 px-4">
-        <div className="grid md:grid-cols-2 md:gap-8 gap-4 h-HeightHeroBox my-12 w-full">
+        <div
+          className="grid md:grid-cols-2 md:gap-8 gap-4 h-HeightHeroBox my-12 w-full"
+          data-testid="social-cards"
+        >
           {Object.keys(socialHandles).map((item) => {
             console.log(socialHandles[item]['url']);
             return (
               <a
                 href={socialHandles[item]['url']}
                 className={`flex-shrink-0 z-50 overflow-hidden flex justify-between bg-${socialHandles[item]['color']}-50 transition-all duration-150 hover-dropDown-${socialHandles[item]['color']} cursor-pointer dark:bg-${socialHandles[item]['color']}-300 dark:bg-opacity-5`}
+                data-testid="social-link"
               >
                 {handleIcons(item)}
                 <h5
@@ -67,8 +71,10 @@ function social() {
           })}
         </div>
         <div className="flex flex-col justify-between m-auto my-12 lg:ml-16 md:p-8 px-4 py-6 h-HeightHeroBox lg:w-WidthHeroBox w-auto border border-gray-200 dark:border-opacity-20 flex-shrink-0 shadow-soft">
-          <div className="flex-1">
-            <h3 className="text-2xl text-center font-extralight mb-8">Contact Form</h3>
+          <form className="flex-1" data-testid="contact-form">
+            <h3 className="text-2xl text-center font-extralight mb-8" data-testid="form-header">
+              Contact Form
+            </h3>
             <input
               type="text"
               placeholder="Name"
@@ -84,14 +90,17 @@ function social() {
               className="border w-full h-1/3 text-sm px-4 py-3 mb-8 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:shadow-inner dark:bg-transparent dark:border-opacity-20"
               placeholder="Content"
             ></textarea>
-          </div>
-          <button className="rounded-none bg-indigo-500 text-white w-full p-3 font-semibold text-sm focus:ring-2 ring-offset-2 ring-indigo-400 dark:ring-offset-gray-900 transition-all duration-100">
-            <div className="flex justify-center">Send it !</div>
-          </button>
+            <button
+              type="submit"
+              className="rounded-none bg-indigo-500 text-white w-full p-3 font-semibold text-sm focus:ring-2 ring-offset-2 ring-indigo-400 dark:ring-offset-gray-900 transition-all duration-100"
+            >
+              <div className="flex justify-center">Send it !</div>
+            </button>
+          </form>
         </div>
       </div>
     </Layout>
   );
 }
 
-export default social;
+export default Social;

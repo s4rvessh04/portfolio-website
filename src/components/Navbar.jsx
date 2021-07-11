@@ -30,8 +30,8 @@ function Navbar() {
   return (
     <>
       <nav className="lg:h-24 lg:px-16 px-4 py-3 lg:flex lg:justify-between items-center flex-shrink-0">
-        <div className="flex justify-between w-full">
-          <ThemeToggler>
+        <div className="flex justify-between w-full" data-testid="navbar-icons">
+          <ThemeToggler role="themeToggler">
             {({ theme, toggleTheme }) =>
               theme === 'light' ? (
                 <hi.HiOutlineSun
@@ -46,7 +46,11 @@ function Navbar() {
               )
             }
           </ThemeToggler>
-          <button onClick={toggle} className="lg:hidden rounded-lg focus:outline-none">
+          <button
+            onClick={toggle}
+            className="lg:hidden rounded-lg focus:outline-none"
+            data-testid="menuButton"
+          >
             <svg fill="currentColor" viewBox="0 0 20 20" className="w-6 h-6 mb-1">
               <path
                 fill-rule="evenodd"
@@ -69,7 +73,10 @@ function Navbar() {
           onKeyDown={!toggle}
           role="presentation"
         >
-          <ul className="flex lg:justify-center justify-evenly items-center font-light text-lg">
+          <ul
+            className="flex lg:justify-center justify-evenly items-center font-light text-lg"
+            data-testid="navbar-navlinks"
+          >
             <li className="lg:mr-10 border-b-2 border-transparent">
               <Link to="/" activeClassName={activeItem} className="pb-1">
                 Home

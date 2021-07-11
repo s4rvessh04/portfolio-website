@@ -2,13 +2,18 @@ import React from 'react';
 import * as hi from 'react-icons/hi';
 import Layout from '../components/Layout';
 
-function about() {
+function About() {
   return (
     <Layout>
       <div className="lg:flex justify-between lg:px-16 px-4">
-        <div className="text-4xl">
-          <h2 className="mt-12 mb-8 italic font-semibold">About me</h2>
-          <p className="md:leading-45px leading-8 md:text-4xl text-2xl">
+        <div className="text-4xl" data-testid="hero-text-section">
+          <h2 className="mt-12 mb-8 italic font-semibold" data-testid="hero-header">
+            About me
+          </h2>
+          <p
+            className="md:leading-45px leading-8 md:text-4xl text-2xl"
+            data-testid="hero-paragraph"
+          >
             Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
             laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
             architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
@@ -16,8 +21,11 @@ function about() {
             voluptatem sequi nesciunt. Et harum quidem rerum facilis est et expedita distinctio.
           </p>
         </div>
-        <div className="flex flex-col justify-between m-auto my-12 lg:ml-16 md:p-8 px-4 py-6 h-HeightHeroBox lg:w-WidthHeroBox w-auto border border-gray-200 dark:border-opacity-20 flex-shrink-0 shadow-soft">
-          <div>
+        <div
+          className="flex flex-col justify-between m-auto my-12 lg:ml-16 md:p-8 px-4 py-6 h-HeightHeroBox lg:w-WidthHeroBox w-auto border border-gray-200 dark:border-opacity-20 flex-shrink-0 shadow-soft"
+          data-testid="descriptive-card"
+        >
+          <div data-testid="card-content">
             <h3 className="text-2xl text-center font-extralight mb-8">Skill Belt</h3>
             <div className="relative mb-4">
               <div className="absolute inset-0 flex items-center">
@@ -34,7 +42,10 @@ function about() {
               Ubuntu, MongoDB and PostgresDB
             </p>
           </div>
-          <button className="rounded-none bg-indigo-500 text-white w-full p-3 font-semibold text-sm focus:ring-2 ring-offset-2 dark:ring-offset-gray-900 ring-indigo-400 transition-all duration-100">
+          <button
+            className="rounded-none bg-indigo-500 text-white w-full p-3 font-semibold text-sm focus:ring-2 ring-offset-2 dark:ring-offset-gray-900 ring-indigo-400 transition-all duration-100"
+            data-testid="card-button"
+          >
             <div className="flex justify-center">
               <hi.HiOutlineDownload className="h-4 w-4 mr-2" />
               Download my resume !
@@ -46,4 +57,4 @@ function about() {
   );
 }
 
-export default about;
+export default About;
