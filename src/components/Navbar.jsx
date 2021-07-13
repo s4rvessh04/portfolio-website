@@ -5,12 +5,13 @@ import * as di from 'react-icons/di';
 import * as hi from 'react-icons/hi';
 
 function Navbar() {
-  const isBrowser = typeof window !== 'undefined';
-  const [isOpen, setIsOpen] = useState(() => {
-    if (isBrowser) {
-      return window.innerWidth > 1024 ? true : false;
-    }
-  });
+  // const isBrowser = typeof window !== 'undefined';
+  const [isOpen, setIsOpen] = useState(true);
+  // const [isOpen, setIsOpen] = useState(() => {
+  //   if (isBrowser) {
+  //     return window.innerWidth > 1024 ? true : false;
+  //   }
+  // });
   const activeItem = 'border-b-2 border-indigo-500';
 
   useEffect(() => {
