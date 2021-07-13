@@ -123,13 +123,31 @@ function Projects() {
   const handleLanguageColors = (name) => {
     switch (name) {
       case 'Python':
-        return 'purple';
+        return {
+          color: 'purple',
+          textColor: 'text-purple-500',
+          backgroundColor: 'bg-purple-500',
+        };
       case 'HTML':
-        return 'red';
+        return {
+          color: 'red',
+          textColor: 'text-red-500',
+          backgroundColor: 'bg-red-500',
+        };
+
       case 'CSS':
-        return 'lightBlue';
+        return {
+          color: 'lightBlue',
+          textColor: 'text-lightBlue-500',
+          backgroundColor: 'bg-lightBlue-500',
+        };
+
       default:
-        return 'gray';
+        return {
+          color: 'gray',
+          textColor: 'text-gray-500',
+          backgroundColor: 'bg-gray-500',
+        };
     }
   };
 
@@ -225,7 +243,7 @@ function Projects() {
                       return (
                         <div
                           style={{ width: `${activeRepoLanguages[item]}%` }}
-                          className={`bg-${handleLanguageColors(item)}-500 p-1`}
+                          className={`${handleLanguageColors(item).backgroundColor} p-1`}
                         ></div>
                       );
                     })
@@ -237,7 +255,7 @@ function Projects() {
                   {activeRepoLanguages !== null ? (
                     Object.keys(activeRepoLanguages).map((item) => {
                       return (
-                        <span className={`pl-1 mr-2 text-${handleLanguageColors(item)}-500`}>
+                        <span className={`pl-1 mr-2 ${handleLanguageColors(item).textColor}`}>
                           {item}: {`${activeRepoLanguages[item]}%`}
                         </span>
                       );

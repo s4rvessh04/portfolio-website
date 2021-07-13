@@ -7,18 +7,38 @@ function Social() {
     Instagram: {
       url: '',
       color: 'pink',
+      theme: {
+        light: 'bg-pink-50',
+        dark: 'dark:bg-pink-300',
+      },
+      textColor: 'text-pink-300',
     },
     Linkedin: {
       url: '',
       color: 'blue',
+      theme: {
+        light: 'bg-blue-50',
+        dark: 'dark:bg-blue-300',
+      },
+      textColor: 'text-blue-300',
     },
     Twitter: {
       url: '',
       color: 'lightBlue',
+      theme: {
+        light: 'bg-lightBlue-50',
+        dark: 'dark:bg-lightBlue-300',
+      },
+      textColor: 'text-lightBlue-300',
     },
     Gmail: {
       url: '',
       color: 'red',
+      theme: {
+        light: 'bg-red-50',
+        dark: 'dark:bg-red-300',
+      },
+      textColor: 'text-red-300',
     },
   };
 
@@ -53,16 +73,15 @@ function Social() {
           data-testid="social-cards"
         >
           {Object.keys(socialHandles).map((item) => {
-            console.log(socialHandles[item]['url']);
             return (
               <a
                 href={socialHandles[item]['url']}
-                className={`flex-shrink-0 z-50 overflow-hidden flex justify-between bg-${socialHandles[item]['color']}-50 transition-all duration-150 hover-dropDown-${socialHandles[item]['color']} cursor-pointer dark:bg-${socialHandles[item]['color']}-300 dark:bg-opacity-5`}
+                className={`flex-shrink-0 z-50 overflow-hidden flex justify-between ${socialHandles[item].theme.light} transition-all duration-150 hover-dropDown-${socialHandles[item]['color']} cursor-pointer ${socialHandles[item].theme.dark} dark:bg-opacity-5`}
                 data-testid="social-link"
               >
                 {handleIcons(item)}
                 <h5
-                  className={`self-center flex-1 ml-14 font-semibold text-lg text-${socialHandles[item]['color']}-300`}
+                  className={`self-center flex-1 ml-14 font-semibold text-lg ${socialHandles[item].textColor}`}
                 >
                   {item}
                 </h5>
