@@ -23,24 +23,26 @@ function Navbar() {
     <>
       <nav className="lg:h-24 lg:px-16 px-4 py-3 lg:flex lg:justify-between items-center flex-shrink-0">
         <div className="flex justify-between w-full" data-testid="navbar-icons">
-          <ThemeToggler>
-            {({ theme, toggleTheme }) => {
-              if (theme == null) {
-                return null;
-              }
-              return theme === 'light' ? (
-                <hi.HiOutlineSun
-                  className="w-8 h-8 mb-1 text-current cursor-pointer"
-                  onClick={() => toggleTheme('dark')}
-                />
-              ) : (
-                <hi.HiOutlineMoon
-                  className="w-8 h-8 mb-1 text-current cursor-pointer"
-                  onClick={() => toggleTheme('light')}
-                />
-              );
-            }}
-          </ThemeToggler>
+          <div data-testid="theme-toggler">
+            <ThemeToggler>
+              {({ theme, toggleTheme }) => {
+                if (theme == null) {
+                  return null;
+                }
+                return theme === 'light' ? (
+                  <hi.HiOutlineSun
+                    className="w-8 h-8 mb-1 text-current cursor-pointer"
+                    onClick={() => toggleTheme('dark')}
+                  />
+                ) : (
+                  <hi.HiOutlineMoon
+                    className="w-8 h-8 mb-1 text-current cursor-pointer"
+                    onClick={() => toggleTheme('light')}
+                  />
+                );
+              }}
+            </ThemeToggler>
+          </div>
           <button
             onClick={toggle}
             className="lg:hidden rounded-lg focus:outline-none"
@@ -72,7 +74,7 @@ function Navbar() {
           >
             {Object.keys(navlinks).map((link) => {
               return (
-                <li className="lg:mr-10 border-b-2 border-transparent">
+                <li className="lg:mr-10 border-b-2 border-transparent" key={link}>
                   <Link to={navlinks[link]} activeClassName={activeItem} className="pb-1">
                     {link}
                   </Link>
