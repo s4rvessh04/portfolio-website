@@ -11,8 +11,8 @@ function Projects() {
   const [activeRepoLanguages, setActiveRepoLanguages] = useState({});
   const [deplomentUrl, setDeplomentUrl] = useState([]);
 
-  const apiLink = 'https://api.github.com/users/targusrock';
-  const token = `${process.env.GATSBY_TOKEN}`;
+  const apiLink = `${process.env.API_URL}`;
+  const token = `${process.env.GITHUB_TOKEN}`;
 
   const headers = {
     Authorization: `Bearer ${token}`,
