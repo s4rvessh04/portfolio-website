@@ -11,14 +11,16 @@ function About() {
             About me
           </h2>
           <p
-            className="md:leading-45px leading-8 md:text-4xl text-2xl"
+            className="md:leading-45px leading-8 md:text-4xl text-2xl font-light"
             data-testid="hero-paragraph"
           >
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-            architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas
-            sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
-            voluptatem sequi nesciunt. Et harum quidem rerum facilis est et expedita distinctio.
+            I am an engineering student majoring in Electronics and Telecommunications in Pune,
+            India. I like coding, and tech fascinates me. Currently about to complete the second
+            year of Engineering.
+            <br />
+            Other than coding I like to meet new people, explore new places, play chess and
+            badminton. I am open to new ideas, collaborative work and sharing my knowledge with
+            others.
           </p>
         </div>
         <div
