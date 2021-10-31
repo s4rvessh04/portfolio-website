@@ -5,7 +5,7 @@ import Layout from '../components/Layout';
 function Social() {
   const socialHandles = {
     Instagram: {
-      url: '',
+      url: 'https://www.instagram.com/sarveshrane2000/',
       color: 'pink',
       theme: {
         light: 'bg-pink-50',
@@ -23,7 +23,7 @@ function Social() {
       textColor: 'text-blue-300',
     },
     Twitter: {
-      url: '',
+      url: 'https://twitter.com/sarveshrane2000/',
       color: 'lightBlue',
       theme: {
         light: 'bg-lightBlue-50',
@@ -32,7 +32,7 @@ function Social() {
       textColor: 'text-lightBlue-300',
     },
     Gmail: {
-      url: '',
+      url: 'mailto:sarveshrane2000.portfolio-site@gmail.com',
       color: 'red',
       theme: {
         light: 'bg-red-50',
@@ -78,6 +78,8 @@ function Social() {
                 href={socialHandles[item]['url']}
                 className={`flex-shrink-0 z-50 overflow-hidden flex justify-between ${socialHandles[item].theme.light} transition-all duration-150 hover-dropDown-${socialHandles[item]['color']} cursor-pointer ${socialHandles[item].theme.dark} dark:bg-opacity-5`}
                 data-testid="social-link"
+                target="_blank"
+                rel="noreferrer"
               >
                 {handleIcons(item)}
                 <h5
