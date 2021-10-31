@@ -15,8 +15,8 @@ function About() {
             data-testid="hero-paragraph"
           >
             I am an engineering student majoring in Electronics and Telecommunications in Pune,
-            India. I like coding, and tech fascinates me. Currently about to complete the second
-            year of Engineering.
+            India. I like coding, and tech fascinates me. Currently pursuing third year of
+            engineering.
             <br />
             Other than coding I like to meet new people, explore new places, play chess and
             badminton. I am open to new ideas, collaborative work and sharing my knowledge with
@@ -40,8 +40,8 @@ function About() {
               </div>
             </div>
             <p className="text-sm font-light text-center">
-              Python, Django, Flask, JavaScript, React, Express, NodeJS, Java, C++, Git, Github,
-              Ubuntu, MongoDB and PostgresDB
+              Python, Django, Flask, FastApi, JavaScript, React, Gatsby, Express, NodeJS, Java, C++,
+              Git, Github, MySQL, Sqlite and MongoDB.
             </p>
           </div>
           <button
