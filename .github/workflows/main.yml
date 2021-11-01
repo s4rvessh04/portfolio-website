@@ -26,7 +26,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-      - run: npm run develop --if-present
+      - run: gatsby build --if-present
       - run: npm run test
 
       - name: Deploy to Netlify
