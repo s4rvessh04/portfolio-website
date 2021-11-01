@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as di from 'react-icons/di';
 import * as hi from 'react-icons/hi';
 import Layout from '../components/Layout';
 
 function Projects() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState(true);
   const [activeRepo, setActiveRepo] = useState({});
   const [activeData, setActiveData] = useState({});
   const [activeContributionsData, setActiveContributionsData] = useState({});
@@ -138,6 +139,8 @@ function Projects() {
 
   useEffect(() => {
     async function fetchData() {
+      setLoading(true);
+
       const userData = await fetchLink(apiLink);
       const reposData = await fetchLink(userData.repos_url);
       const contributionData = await fetchLink(reposData[0].contributors_url);
@@ -149,7 +152,7 @@ function Projects() {
       setActiveContributionsData(totalContributorsContributions(contributionData));
       setActiveRepoLanguages(languageBar(languageData));
 
-      return true;
+      setLoading(false);
     }
     fetchData();
   }, [apiLink]);
@@ -158,150 +161,16 @@ function Projects() {
     <>
       <Layout pagename="/projects" prefix={false}>
         <div className="lg:flex justify-between lg:px-16 px-4">
-          {data ? (
-            activeRepo && (
-              <>
-                <div
-                  className="grid md:grid-cols-3 md:gap-8 gap-4 lg:h-HeightHeroBox my-12 w-full"
-                  data-testid="projects-grid"
-                >
-                  {Object.values(data).map((item) => {
-                    return (
-                      <button
-                        className={`${
-                          activeRepo === item.name
-                            ? 'shadow-hoverShadow transition-transform duration-150 transform -translate-y-1 translate-x-1'
-                            : 'hover-dropDown-gray dark:hover:shadow-none arrow-wrapper'
-                        } p-3 relative overflow-hidden bg-gray-50 hover-dropDown-gray dark:bg-opacity-5 flex flex-col flex-shrink-0 cursor-pointer transition-all duration-150 ease-in-out`}
-                        onClick={() => handleActiveRepo(item.name)}
-                      >
-                        <div className="pb-0 relative z-10">
-                          <h5 className="text-lg mb-2">{item.name}</h5>
-                          <p className="text-sm font-light leading-5 text-gray-700 dark:text-gray-50">
-                            {item.description}
-                          </p>
-                        </div>
-                        <div className="flex justify-end w-full flex-grow">
-                          <hi.HiArrowNarrowRight className="animate-arrow duration-150 z-50 h-6 w-6 mr-8 relative text-gray-500 self-center" />
-                        </div>
-                        {languageIcon(item.language)}
-                      </button>
-                    );
-                  })}
-                </div>
-                <div
-                  className="flex flex-col justify-between m-auto my-12 lg:ml-16 md:p-8 px-4 py-6 h-HeightHeroBox lg:w-WidthHeroBox w-auto border border-gray-200 dark:border-opacity-20 flex-shrink-0 shadow-soft"
-                  data-testid="project-details-card"
-                >
-                  <div className="wrapper">
-                    <h3 className="text-2xl text-center font-extralight mb-8">Details</h3>
-                    <div className="relative mb-4">
-                      <div className="absolute inset-0 flex items-center">
-                        <div className="w-full border-t border-gray-200 dark:border-opacity-20"></div>
-                      </div>
-                      <div className="relative flex justify-center text-sm leading-5">
-                        <span className="px-4 font-medium text-sm bg-white dark:bg-gray-900">
-                          Total Contributors and Contributions
-                        </span>
-                      </div>
-                    </div>
-                    <p className="text-sm font-light text-center">
-                      Contributors: {activeContributionsData.totalContributors}
-                    </p>
-                    <p className="text-sm font-light text-center">
-                      Contributions: {activeContributionsData.totalContributions}
-                    </p>
-                  </div>
-                  <div className="wrapper">
-                    <div className="relative mb-4">
-                      <div className="absolute inset-0 flex items-center">
-                        <div className="w-full border-t border-gray-200 dark:border-opacity-20"></div>
-                      </div>
-                      <div className="relative flex justify-center text-sm leading-5">
-                        <span className="px-4 font-medium text-sm bg-white dark:bg-gray-900">
-                          Forking Status
-                        </span>
-                      </div>
-                    </div>
-                    <p className="text-sm font-light text-center">
-                      {activeData.forked ? 'Forked' : 'Not Forked'}
-                    </p>
-                  </div>
-                  <div className="wrapper">
-                    <div className="relative mb-4">
-                      <div className="absolute inset-0 flex items-center">
-                        <div className="w-full border-t border-gray-200 dark:border-opacity-20"></div>
-                      </div>
-                      <div className="relative flex justify-center text-sm leading-5">
-                        <span className="px-4 font-medium text-sm bg-white dark:bg-gray-900">
-                          Languages
-                        </span>
-                      </div>
-                    </div>
-                    <div className="w-full flex" data-testid="language-bar">
-                      {activeRepoLanguages !== null ? (
-                        Object.keys(activeRepoLanguages).map((item) => {
-                          return (
-                            <div
-                              style={{ width: `${activeRepoLanguages[item]}%` }}
-                              className={`${handleLanguageColors(item).backgroundColor} p-1`}
-                            ></div>
-                          );
-                        })
-                      ) : (
-                        <div className="w-full bg-gray-500 p-1"></div>
-                      )}
-                    </div>
-                    <p className="text-xs font-light mt-2">
-                      {activeRepoLanguages !== null ? (
-                        Object.keys(activeRepoLanguages).map((item) => {
-                          return (
-                            <span className={`pl-1 mr-2 ${handleLanguageColors(item).textColor}`}>
-                              {item}: {`${activeRepoLanguages[item]}%`}
-                            </span>
-                          );
-                        })
-                      ) : (
-                        <span>{'No languages found'}</span>
-                      )}
-                    </p>
-                  </div>
-                  <div className="grid grid-cols-2 md:gap-5 gap-2" data-testid="button-grid">
-                    <a
-                      href={deplomentUrl[0] !== undefined ? deplomentUrl[0] : null}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <button
-                        className="rounded-none disabled:opacity-70 disabled:cursor-not-allowed bg-indigo-500 text-white w-full md:p-2 py-2 px-1 border border-indigo-500 font-semibold text-sm focus:ring-2 ring-offset-2 ring-offset-gray-900 ring-indigo-400 transition-all duration-100"
-                        disabled={deplomentUrl.length === 0}
-                      >
-                        <div className="flex justify-center">
-                          View Project <hi.HiExternalLink className="h-4 w-4 ml-1" />
-                        </div>
-                      </button>
-                    </a>
-                    <a href={activeData.html_url} target="_blank" rel="noreferrer">
-                      <button className="rounded-none bg-white dark:bg-transparent text-gray-900 dark:text-gray-50 w-full md:p-2 py-2 px-1 font-semibold text-sm border border-gray-900 dark:border-gray-50 focus:ring-2 ring-offset-2 ring-gray-900 dark:ring-gray-400 transition-all duration-100">
-                        <div className="flex justify-center">
-                          View Repository <di.DiGithubBadge className="h-5 w-5 ml-1" />
-                        </div>
-                      </button>
-                    </a>
-                  </div>
-                </div>
-              </>
-            )
-          ) : (
-            <div className="flex flex-1 h-screen justify-center items-center">
+          {isLoading && (
+            <div className="flex flex-1 h-screen justify-center items-center" data-testid="loader">
               <svg
-                class="animate-spin -ml-1 mr-3 h-8 w-8 text-gray-500"
+                className="animate-spin -ml-1 mr-3 h-8 w-8 text-gray-500"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
               >
                 <circle
-                  class="opacity-25"
+                  className="opacity-25"
                   cx="12"
                   cy="12"
                   r="10"
@@ -309,13 +178,146 @@ function Projects() {
                   strokeWidth="4"
                 ></circle>
                 <path
-                  class="opacity-75"
+                  className="opacity-75"
                   fill="currentColor"
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                 ></path>
               </svg>
               <h1 className="font-semibold">Loading Data</h1>
             </div>
+          )}
+          {!isLoading && activeRepo && (
+            <>
+              <div
+                className="grid md:grid-cols-3 md:gap-8 gap-4 lg:h-HeightHeroBox my-12 w-full"
+                data-testid="projects-grid"
+              >
+                {Object.values(data).map((item) => {
+                  return (
+                    <button
+                      className={`${
+                        activeRepo === item.name
+                          ? 'shadow-hoverShadow transition-transform duration-150 transform -translate-y-1 translate-x-1'
+                          : 'hover-dropDown-gray dark:hover:shadow-none arrow-wrapper'
+                      } p-3 relative overflow-hidden bg-gray-50 hover-dropDown-gray dark:bg-opacity-5 flex flex-col flex-shrink-0 cursor-pointer transition-all duration-150 ease-in-out`}
+                      onClick={() => handleActiveRepo(item.name)}
+                    >
+                      <div className="pb-0 relative z-10">
+                        <h5 className="text-lg mb-2">{item.name}</h5>
+                        <p className="text-sm font-light leading-5 text-gray-700 dark:text-gray-50">
+                          {item.description}
+                        </p>
+                      </div>
+                      <div className="flex justify-end w-full flex-grow">
+                        <hi.HiArrowNarrowRight className="animate-arrow duration-150 z-50 h-6 w-6 mr-8 relative text-gray-500 self-center" />
+                      </div>
+                      {languageIcon(item.language)}
+                    </button>
+                  );
+                })}
+              </div>
+              <div
+                className="flex flex-col justify-between m-auto my-12 lg:ml-16 md:p-8 px-4 py-6 h-HeightHeroBox lg:w-WidthHeroBox w-auto border border-gray-200 dark:border-opacity-20 flex-shrink-0 shadow-soft"
+                data-testid="project-details-card"
+              >
+                <div className="wrapper">
+                  <h3 className="text-2xl text-center font-extralight mb-8">Details</h3>
+                  <div className="relative mb-4">
+                    <div className="absolute inset-0 flex items-center">
+                      <div className="w-full border-t border-gray-200 dark:border-opacity-20"></div>
+                    </div>
+                    <div className="relative flex justify-center text-sm leading-5">
+                      <span className="px-4 font-medium text-sm bg-white dark:bg-gray-900">
+                        Total Contributors and Contributions
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-sm font-light text-center">
+                    Contributors: {activeContributionsData.totalContributors}
+                  </p>
+                  <p className="text-sm font-light text-center">
+                    Contributions: {activeContributionsData.totalContributions}
+                  </p>
+                </div>
+                <div className="wrapper">
+                  <div className="relative mb-4">
+                    <div className="absolute inset-0 flex items-center">
+                      <div className="w-full border-t border-gray-200 dark:border-opacity-20"></div>
+                    </div>
+                    <div className="relative flex justify-center text-sm leading-5">
+                      <span className="px-4 font-medium text-sm bg-white dark:bg-gray-900">
+                        Forking Status
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-sm font-light text-center">
+                    {activeData.forked ? 'Forked' : 'Not Forked'}
+                  </p>
+                </div>
+                <div className="wrapper">
+                  <div className="relative mb-4">
+                    <div className="absolute inset-0 flex items-center">
+                      <div className="w-full border-t border-gray-200 dark:border-opacity-20"></div>
+                    </div>
+                    <div className="relative flex justify-center text-sm leading-5">
+                      <span className="px-4 font-medium text-sm bg-white dark:bg-gray-900">
+                        Languages
+                      </span>
+                    </div>
+                  </div>
+                  <div className="w-full flex" data-testid="language-bar">
+                    {activeRepoLanguages !== null ? (
+                      Object.keys(activeRepoLanguages).map((item) => {
+                        return (
+                          <div
+                            style={{ width: `${activeRepoLanguages[item]}%` }}
+                            className={`${handleLanguageColors(item).backgroundColor} p-1`}
+                          ></div>
+                        );
+                      })
+                    ) : (
+                      <div className="w-full bg-gray-500 p-1"></div>
+                    )}
+                  </div>
+                  <p className="text-xs font-light mt-2">
+                    {activeRepoLanguages !== null ? (
+                      Object.keys(activeRepoLanguages).map((item) => {
+                        return (
+                          <span className={`pl-1 mr-2 ${handleLanguageColors(item).textColor}`}>
+                            {item}: {`${activeRepoLanguages[item]}%`}
+                          </span>
+                        );
+                      })
+                    ) : (
+                      <span>{'No languages found'}</span>
+                    )}
+                  </p>
+                </div>
+                <div className="grid grid-cols-2 md:gap-5 gap-2" data-testid="button-grid">
+                  <a
+                    href={deplomentUrl[0] !== undefined ? deplomentUrl[0] : null}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <button
+                      className="rounded-none disabled:opacity-70 disabled:cursor-not-allowed bg-indigo-500 text-white w-full md:p-2 py-2 px-1 border border-indigo-500 font-semibold text-sm focus:ring-2 ring-offset-2 ring-offset-gray-900 ring-indigo-400 transition-all duration-100"
+                      disabled={deplomentUrl.length === 0}
+                    >
+                      <div className="flex justify-center">
+                        View Project <hi.HiExternalLink className="h-4 w-4 ml-1" />
+                      </div>
+                    </button>
+                  </a>
+                  <a href={activeData.html_url} target="_blank" rel="noreferrer">
+                    <button className="rounded-none bg-white dark:bg-transparent text-gray-900 dark:text-gray-50 w-full md:p-2 py-2 px-1 font-semibold text-sm border border-gray-900 dark:border-gray-50 focus:ring-2 ring-offset-2 ring-gray-900 dark:ring-gray-400 transition-all duration-100">
+                      <div className="flex justify-center">
+                        View Repository <di.DiGithubBadge className="h-5 w-5 ml-1" />
+                      </div>
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </>
           )}
         </div>
       </Layout>
