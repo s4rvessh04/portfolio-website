@@ -22,8 +22,10 @@ function Projects() {
 
   async function fetchLink(link) {
     try {
-      const response = await fetch(link, { headers });
+      const response = await fetch(link, headers);
+      console.log(response, headers);
       const data = await response.json();
+      console.log(data);
       return data;
     } catch (error) {
       console.error(error);
