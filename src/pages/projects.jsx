@@ -10,7 +10,7 @@ function Projects() {
   const [activeData, setActiveData] = useState({});
   const [activeContributionsData, setActiveContributionsData] = useState({});
   const [activeRepoLanguages, setActiveRepoLanguages] = useState({});
-  const [deplomentUrl, setDeplomentUrl] = useState([]);
+  const [deplomentUrl, setDeplomentUrl] = useState(null);
 
   const apiLink = process.env.GATSBY_API_URL;
   const token = process.env.GATSBY_GITHUB_TOKEN;
@@ -26,8 +26,7 @@ function Projects() {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error(error);
-      return 'No data';
+      return `No data: ${error}`;
     }
   }
 
@@ -81,7 +80,7 @@ function Projects() {
         return (
           <di.DiHtml5 className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-20 dropDown-gray" />
         );
-      case 'Javascript':
+      case 'JavaScript':
         return (
           <di.DiJavascript1 className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-20 dropDown-gray" />
         );
@@ -99,9 +98,8 @@ function Projects() {
         setActiveData(item);
         totalContributorsContributions(fetchLink(item.contributors_url));
         languageBar(fetchLink(item.languages_url));
-        fetchLink(item.deployments_url).then((items) => {
-          setDeplomentUrl(items);
-        });
+        if (item.homepage) setDeplomentUrl(item.homepage);
+        else setDeplomentUrl(null);
       }
     });
   };
@@ -113,6 +111,12 @@ function Projects() {
           color: 'purple',
           textColor: 'text-purple-500',
           backgroundColor: 'bg-purple-500',
+        };
+      case 'JavaScript':
+        return {
+          color: 'yellow',
+          textColor: 'text-yellow-500',
+          backgroundColor: 'bg-yellow-500',
         };
       case 'HTML':
         return {
@@ -202,7 +206,7 @@ function Projects() {
                         } p-3 relative overflow-hidden bg-gray-50 hover-dropDown-gray dark:bg-opacity-5 flex flex-col flex-shrink-0 cursor-pointer transition-all duration-150 ease-in-out`}
                         onClick={() => handleActiveRepo(item.name)}
                       >
-                        <div className="pb-0 relative z-10">
+                        <div className="pb-0 relative z-10 text-left">
                           <h5 className="text-lg mb-2">{item.name}</h5>
                           <p className="text-sm font-light leading-5 text-gray-700 dark:text-gray-50">
                             {item.description}
@@ -279,7 +283,7 @@ function Projects() {
                         <div className="w-full bg-gray-500 p-1"></div>
                       )}
                     </div>
-                    <p className="text-xs font-light mt-2">
+                    <p className="text-xs font-normal mt-2">
                       {activeRepoLanguages !== null ? (
                         Object.keys(activeRepoLanguages).map((item) => {
                           return (
@@ -294,14 +298,10 @@ function Projects() {
                     </p>
                   </div>
                   <div className="grid grid-cols-2 md:gap-5 gap-2" data-testid="button-grid">
-                    <a
-                      href={deplomentUrl[0] !== undefined ? deplomentUrl[0] : null}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
+                    <a href={deplomentUrl ? deplomentUrl : null} target="_blank" rel="noreferrer">
                       <button
-                        className="rounded-none disabled:opacity-70 disabled:cursor-not-allowed bg-indigo-500 text-white w-full md:p-2 py-2 px-1 border border-indigo-500 font-semibold text-sm focus:ring-2 ring-offset-2 ring-offset-gray-900 ring-indigo-400 transition-all duration-100"
-                        disabled={deplomentUrl.length === 0}
+                        className="rounded-none disabled:opacity-70 disabled:cursor-not-allowed bg-indigo-500 text-white w-full md:p-2 py-2 px-1 border border-indigo-500 font-semibold text-sm focus:ring-2 ring-offset-2 dark:ring-offset-gray-900 ring-indigo-400 transition-all duration-100"
+                        disabled={deplomentUrl === null}
                       >
                         <div className="flex justify-center">
                           View Project <hi.HiExternalLink className="h-4 w-4 ml-1" />
@@ -309,7 +309,7 @@ function Projects() {
                       </button>
                     </a>
                     <a href={activeData.html_url} target="_blank" rel="noreferrer">
-                      <button className="rounded-none bg-white dark:bg-transparent text-gray-900 dark:text-gray-50 w-full md:p-2 py-2 px-1 font-semibold text-sm border border-gray-900 dark:border-gray-50 focus:ring-2 ring-offset-2 ring-gray-900 dark:ring-gray-400 transition-all duration-100">
+                      <button className="rounded-none bg-transparent dark:bg-transparent text-gray-900 dark:text-gray-50 w-full md:p-2 py-2 px-1 font-semibold text-sm border border-gray-900 dark:border-gray-50 focus:ring-2 ring-offset-2 dark:ring-offset-gray-900 ring-gray-900 dark:ring-gray-400 transition-all duration-100">
                         <div className="flex justify-center">
                           View Repository <di.DiGithubBadge className="h-5 w-5 ml-1" />
                         </div>
