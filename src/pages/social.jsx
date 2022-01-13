@@ -13,8 +13,8 @@ function Social() {
       },
       textColor: 'text-pink-300',
     },
-    Linkedin: {
-      url: '',
+    LinkedIn: {
+      url: 'https://linkedin.com/in/sarvesh-rane-80452522a',
       color: 'blue',
       theme: {
         light: 'bg-blue-50',
@@ -48,7 +48,7 @@ function Social() {
         return (
           <si.SiInstagram className="z-0 relative -left-8 -bottom-8 h-48 w-48 flex self-end text-pink-100 dropDown-pink" />
         );
-      case 'Linkedin':
+      case 'LinkedIn':
         return (
           <si.SiLinkedin className="z-0 relative -left-8 -bottom-8 h-48 w-48 flex self-end text-blue-100 dropDown-blue" />
         );
