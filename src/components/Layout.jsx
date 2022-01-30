@@ -13,7 +13,7 @@ function Layout({ children, pagename, prefix }) {
           {prefix ? 'Sarvesh Rane • Portfolio-Website' : `Portfolio-Website • ${pagename}`}
         </title>
       </Helmet>
-      <div className="lg:h-screen flex flex-col justify-between text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-150">
+      <div className="lg:min-h-screen flex flex-col justify-between text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-150">
         <Navbar />
         <div className="flex-1 flex-shrink-0" data-testid="Children">
           {children}
