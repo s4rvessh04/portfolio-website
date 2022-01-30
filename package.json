@@ -1,9 +1,11 @@
 {
-  "name": "gatsby-starter-hello-world",
+  "name": "portfolio_website",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
-  "version": "0.1.0",
+  "description": "A portfolio website made by Sarvesh Rane",
+  "version": "1.0.0",
   "license": "0BSD",
+  "author": "Sarvesh Rane",
+  "homepage": "https://sarveshrane2000-portfolio.netlify.app/",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
@@ -40,9 +42,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/sarveshrane2000/Portfolio-Website"
   }
 }
