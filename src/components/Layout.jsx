@@ -9,7 +9,9 @@ function Layout({ children, pagename, prefix }) {
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{prefix ? 'targusrock | Portfolio-Website' : `Portfolio-Website${pagename}`}</title>
+        <title>
+          {prefix ? 'Sarvesh Rane • Portfolio-Website' : `Portfolio-Website • ${pagename}`}
+        </title>
       </Helmet>
       <div className="lg:h-screen flex flex-col justify-between text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-150">
         <Navbar />
