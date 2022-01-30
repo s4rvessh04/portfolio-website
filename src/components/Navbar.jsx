@@ -83,7 +83,7 @@ function Navbar() {
             })}
 
             <li key="github-link">
-              <a href="https://www.github.com/targusrock" target="_blank" rel="noreferrer">
+              <a href="https://www.github.com/sarveshrane2000" target="_blank" rel="noreferrer">
                 <di.DiGithubBadge className="h-8 w-8 md:mb-1 mb-2 text-gray-400 dark:text-gray-50" />
               </a>
             </li>
