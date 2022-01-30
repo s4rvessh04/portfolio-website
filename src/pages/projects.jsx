@@ -163,7 +163,7 @@ function Projects() {
 
   return (
     <>
-      <Layout pagename="/projects" prefix={false}>
+      <Layout pagename="Projects" prefix={false}>
         <div className="lg:flex justify-between lg:px-16 px-4">
           {isLoading ? (
             <div className="flex flex-1 h-screen justify-center items-center" data-testid="loader">

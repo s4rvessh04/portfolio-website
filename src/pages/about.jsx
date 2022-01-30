@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 
 function About() {
   return (
-    <Layout pagename="/about" prefix={false}>
+    <Layout pagename="About" prefix={false}>
       <div className="lg:flex justify-between lg:px-16 px-4">
         <div className="text-4xl" data-testid="hero-text-section">
           <h2 className="mt-12 mb-8 italic font-semibold" data-testid="hero-header">

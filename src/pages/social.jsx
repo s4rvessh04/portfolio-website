@@ -66,7 +66,7 @@ function Social() {
   };
 
   return (
-    <Layout pagename="/social" prefix={false}>
+    <Layout pagename="Social" prefix={false}>
       <div className="lg:flex justify-between lg:px-16 px-4">
         <div
           className="grid md:grid-cols-2 md:gap-8 gap-4 h-HeightHeroBox my-12 w-full"
