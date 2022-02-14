@@ -35,7 +35,7 @@ function About() {
               </div>
               <div className="relative flex justify-center text-sm leading-5">
                 <span className="px-4 font-medium text-sm bg-white dark:bg-gray-900">
-                  Coding Proficieny
+                  Coding Proficiency
                 </span>
               </div>
             </div>
