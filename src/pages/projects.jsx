@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as di from 'react-icons/di';
 import * as hi from 'react-icons/hi';
+import * as si from 'react-icons/si';
 import Layout from '../components/Layout';
 
 function Projects() {
@@ -84,6 +85,10 @@ function Projects() {
         return (
           <di.DiJavascript1 className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-20 dropDown-gray" />
         );
+      case 'Go':
+        return (
+          <si.SiGo className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-20 dropDown-gray" />
+        );
       default:
         return (
           <di.DiGithubBadge className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-20 dropDown-gray" />
@@ -117,6 +122,12 @@ function Projects() {
           color: 'yellow',
           textColor: 'text-yellow-500',
           backgroundColor: 'bg-yellow-500',
+        };
+      case 'Go':
+        return {
+          color: 'blue',
+          textColor: 'text-blue-500',
+          backgroundColor: 'bg-blue-500',
         };
       case 'HTML':
         return {
