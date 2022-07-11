@@ -1,6 +1,7 @@
 import React from 'react';
 import * as hi from 'react-icons/hi';
 import Layout from '../components/Layout';
+import Resume from '../../static/Resume.pdf';
 
 function About() {
   return (
@@ -40,18 +41,18 @@ function About() {
               </div>
             </div>
             <p className="text-sm font-light text-center">
-              Python, Django, Flask, FastApi, JavaScript, React, Gatsby, Express, NodeJS, Java, C++,
-              Git, Github, MySQL, Sqlite and MongoDB.
+              Python, Django, Flask, FastApi, JavaScript, ReactJS, Svelte, Gatsby, Express, NodeJS,
+              Java, Git, Github, MySQL, Sqlite and MongoDB.
             </p>
           </div>
           <button
             className="rounded-none bg-indigo-500 text-white w-full p-3 font-semibold text-sm focus:ring-2 ring-offset-2 dark:ring-offset-gray-900 ring-indigo-400 transition-all duration-100"
             data-testid="card-button"
           >
-            <div className="flex justify-center">
+            <a className="flex justify-center" href={Resume} download="SarveshRane-Resume">
               <hi.HiOutlineDownload className="h-4 w-4 mr-2" />
               Download my resume !
-            </div>
+            </a>
           </button>
         </div>
       </div>
