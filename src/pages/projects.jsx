@@ -75,23 +75,27 @@ function Projects() {
     switch (name) {
       case 'Python':
         return (
-          <di.DiPython className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-20 dropDown-gray" />
+          <di.DiPython className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-5 dropDown-gray" />
         );
       case 'HTML':
         return (
-          <di.DiHtml5 className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-20 dropDown-gray" />
+          <di.DiHtml5 className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-5 dropDown-gray" />
         );
       case 'JavaScript':
         return (
-          <di.DiJavascript1 className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-20 dropDown-gray" />
+          <di.DiJavascript1 className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-5 dropDown-gray" />
         );
       case 'Go':
         return (
-          <si.SiGo className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-20 dropDown-gray" />
+          <si.SiGo className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-5 dropDown-gray" />
+        );
+      case 'Java':
+        return (
+          <si.SiJava className='className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-5 dropDown-gray"' />
         );
       default:
         return (
-          <di.DiGithubBadge className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-20 dropDown-gray" />
+          <di.DiGithubBadge className="object-none object-left-bottom z-0 h-40 w-40 absolute -left-8 -bottom-8 text-gray-200 dark:text-opacity-5 dropDown-gray" />
         );
     }
   };
@@ -117,6 +121,12 @@ function Projects() {
           textColor: 'text-purple-500',
           backgroundColor: 'bg-purple-500',
         };
+      case 'Java':
+        return {
+          color: 'red',
+          textColor: 'text-red-500',
+          backgroundColor: 'bg-red-500',
+        };
       case 'JavaScript':
         return {
           color: 'yellow',
@@ -131,9 +141,9 @@ function Projects() {
         };
       case 'HTML':
         return {
-          color: 'red',
-          textColor: 'text-red-500',
-          backgroundColor: 'bg-red-500',
+          color: 'pink',
+          textColor: 'text-pink-500',
+          backgroundColor: 'bg-pink-500',
         };
 
       case 'CSS':
@@ -150,6 +160,22 @@ function Projects() {
           backgroundColor: 'bg-gray-500',
         };
     }
+  };
+
+  const handlePinnedRepos = (repositories) => {
+    const pinnedRepos = [
+      'BankingAppCLI',
+      'Budgeter',
+      'Django-Website',
+      'FRTProject',
+      'IP-DRF',
+      'MasterDash',
+      'portfolio-website',
+      'sarveshrane2000',
+      'Ticket_Booking_App',
+    ];
+
+    return repositories.filter((repo) => pinnedRepos.indexOf(repo.name) > -1);
   };
 
   useEffect(() => {
@@ -207,18 +233,18 @@ function Projects() {
                   className="grid md:grid-cols-3 md:gap-8 gap-4 lg:h-HeightHeroBox my-12 w-full"
                   data-testid="projects-grid"
                 >
-                  {Object.values(data).map((item) => {
+                  {Object.values(handlePinnedRepos(data)).map((item) => {
                     return (
                       <button
                         className={`${
                           activeRepo === item.name
-                            ? 'shadow-hoverShadow transition-transform duration-150 transform -translate-y-1 translate-x-1'
+                            ? 'shadow-hoverShadow ring-1 ring-gray-200 dark:ring-gray-700 transition-transform duration-150 transform -translate-y-1 translate-x-1'
                             : 'hover-dropDown-gray dark:hover:shadow-none arrow-wrapper'
                         } p-3 relative overflow-hidden bg-gray-50 hover-dropDown-gray dark:bg-opacity-5 flex flex-col flex-shrink-0 cursor-pointer transition-all duration-150 ease-in-out`}
                         onClick={() => handleActiveRepo(item.name)}
                       >
                         <div className="pb-0 relative z-10 text-left">
-                          <h5 className="text-lg mb-2">{item.name}</h5>
+                          <h5 className="text-lg mb-2 capitalize font-medium">{item.name}</h5>
                           <p className="text-sm font-light leading-5 text-gray-700 dark:text-gray-50">
                             {item.description}
                           </p>
