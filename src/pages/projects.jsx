@@ -166,7 +166,7 @@ function Projects() {
     const pinnedRepos = [
       'BankingAppCLI',
       'Budgeter',
-      'Django-Website',
+      'University-Website',
       'FRTProject',
       'IP-DRF',
       'MasterDash',
